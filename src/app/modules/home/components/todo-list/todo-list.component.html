@@ -1,0 +1,18 @@
+<section [ngClass]="{'loading':!bandsList.length}">
+    <ul *ngIf="bandsList.length">
+
+        <li *ngFor="let item of bandsList;let i= index">
+            <input type="checkbox" [(ngModel)]="item.checked">
+            <input type="text" (keyup)="validationInput(item.bands,i)" [(ngModel)]="item.bands" [ngClass]="{'checked':item.checked}">
+           
+                <button (click)="deleteItemBandList(i)">
+                <img src="assets/icons/icon-trash.svg"alt=>
+            </button>
+            
+        </li>
+    </ul>
+
+</section>
+
+<app-todo-input-add-itens (emmitBandsList)="setEmitBandsList($event)"></app-todo-input-add-itens>
+<app-todo-button-delete *ngIf="bandsList.length" (click)="deleteAll()" ></app-todo-button-delete>
